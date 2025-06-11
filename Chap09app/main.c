@@ -2,19 +2,23 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+
+
 int test_strlen();
 int test_strcpy();
+int test_string();
+int str_swap(char str1, char str2);
+
 
 int main()
 {
 	//printf("Hello World!\n");
 	//test_strlen();
-	test_strcpy();
-
+	//test_strcpy();
+	test_string();
 
 	return 0; 
 }
-int str_swap(char str1, char str2);
 
 #define SIZE 32
 int test_strcpy()
@@ -34,6 +38,7 @@ int test_strcpy()
 	return 0;
 }
 //교환된 두 문자열 길이의 합을 반환
+ 
 int str_swap(char *str1 , char *str2, int size)
 {
 	int result = 0;
@@ -90,3 +95,35 @@ int test_strlen()
 	len = strlen("");
 	printf("%s 의 길이 : %d\n", "", strlen(" "));
 } 
+
+#define SIZE 128
+int test_string()
+{
+	char in_str[SIZE] = "";
+	char out_str[SIZE] = "";
+	char* pcontext = NULL;
+
+
+	char mycontact[] = "C:\\Users\\User\\Download\\mycontact.txt";
+
+	FILE* mc = fopen(mycontact, "r");
+
+	fgets(in_str, sizeof(in_str), mycontact);
+
+
+	printf("Enter string: ");
+	gets_s(in_str, sizeof(in_str));
+	puts(in_str);
+	
+	char* p_token = strtok_s(in_str, "|", &pcontext);
+	if(p_token != NULL) puts(p_token);
+
+	p_token = strtok_s(NULL, "|", &pcontext);
+	if(p_token != NULL) puts(p_token);
+	
+	p_token = strtok(NULL, "|", &pcontext);
+	if(p_token != NULL) puts(p_token);
+	
+
+	return 0;
+}

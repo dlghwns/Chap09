@@ -12,7 +12,7 @@ int main()
 	test_strcpy();
 
 
-	return 0;
+	return 0; 
 }
 int str_swap(char str1, char str2);
 
@@ -24,7 +24,7 @@ int test_strcpy()
 
 	printf("두 문자열 입력 : ");
 	scanf_s("%s %s", str1, SIZE, str2, SIZE);
-	printf("%s %s가 입력되었습니다.", str1, str2);
+	printf("%s %s가 입력되었습니다.\n", str1, str2);
 
 	char temp[SIZE] = "";
 	
@@ -37,6 +37,14 @@ int test_strcpy()
 int str_swap(char *str1 , char *str2, int size)
 {
 	int result = 0;
+	if (size <= 0 || str1 == NULL || str2 == NULL)
+	{
+		return 0;
+	}
+
+
+
+
 
 	char* temp = NULL;
 	//void * malloc(int size);
@@ -44,13 +52,18 @@ int str_swap(char *str1 , char *str2, int size)
 	// char temp[SIZE]; 
 
 
-	if (temp = NULL) {
+	if (temp == NULL) {
 		return 0;
 	}
 
-	strncpy(temp, str1, size);
-	strncpy(str1, str2, size);
-	strncpy(str2, temp, size);
+	//strncpy(temp, str1, size);
+	//strncpy(str1, str2, size);
+	//strncpy(str2, temp, size);
+
+
+	strcpy_s(temp, size, str1);
+	strcpy_s(str1, size, str2);
+	strcpy_s(str2, size, temp);
 
 	result = strlen(str1) + strlen(str2);
 	free(temp);
@@ -76,7 +89,4 @@ int test_strlen()
 
 	len = strlen("");
 	printf("%s 의 길이 : %d\n", "", strlen(" "));
-}
-
-
-
+} 
